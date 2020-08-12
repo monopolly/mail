@@ -115,3 +115,28 @@ You could support the idea with a stars here or on change.org(just kidding)
 I realize that a lot of people have enough of what they already have. But it's not a substitute for email. It's an improvement.
 
 The old mail will work as before. But the preference will be for the new format as the main one. If the new format is not yet made on the server, the classic method will be used. This is the main idea.
+
+# Feedback
+### @dashyper 
+##### How do you stop spam again? Emails feel slow, but they really aren't Email is actually simpler than HTTPS, HTTPS is just more widely known and is well abstracted away. Email storage, retrieval and re-delivery on failure are some other important aspects that you need to consider.
+
+I don't want to completely stop spam. It's just impossible. I want to make it much harder. And also to allow you to send me spam legally in a special "Ads" category, for example. Let the spam be allowed and civilized. Maybe a special kind of view etc.
+I come from the fact that forging a private key is very difficult. But any message in the new version must be signed with a public key in the DNS domain.
+That is exclude a "light" spam in general (without domains, legal servers, etc.). If you are sending spam from your server/domain, it is very easy to get you and take some antispam action (ban etc).I'm sure you can reduce spam very much.
+
+About a transports. Sure HTTPS is not a simpler then SMTP for example. But HTTP(tcp) you can improove (speed, quality etc) but not a classic mail transport. Thats an idea. To reduce a entrance level for developers. Users don't care about it. But developers does. And come on. This is a really old methods to communicate between users;)
+
+With a new way you can develop your own storages, methods to delivery user emails. You have to use a required methods for mail clients. But you free to develop your own protocols and other useful tools like "corporate mail pull".
+
+# Opinions
+### @miwnwski
+I dream of it every time I have to work with email. Feeling almost forced to use a “Email as a Service”.
+I had an idea that all emails has to be pulled by the recipient, heh, pull-mails. Emails are addressed and created locally to said recipient(s), preferably encrypted at rest with public keys which is received on subscription by the recipient, but it’s sort of opt-in if I want it or not.
+In other words, you could “subscribe” to your companies server, an online community, a specific persons server or maybe a global-ish public server - but as soon as you feel that’s not an appropriate venue anymore, just stop pulling (ie. unsubscribe).
+Aah, to be young and wishful!
+
+### @orcadave
+I find this interesting. I have been tinkering with a similar idea.
+I would stick with SRV records for listing the servers that will accept messages. That is what they are designed for.
+For the post location, I would use a /.well-known/ address (rfc5785).
+And wholeheartedly +1 markdown, though I would specify (CommonMark).
