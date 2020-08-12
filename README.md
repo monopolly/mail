@@ -66,7 +66,7 @@ You have json envelope with 2 fields only
 ### 2. No MX records anymore
 The main reason is to give a more flexible server structure. To simplify the development of electronic mail.
 
-1. For each domain you have to write a TXT fields in DNS. Servers to accept mail together with ports. No required 25, 2525, 487 etc ports. Use any ports you want.
+1. For each domain you have to write a TXT/SRV? records in DNS. Servers to accept mail together with ports. No required 25, 2525, 487 etc ports. Use any ports you want.
 ```
 _inbox IN TXT "214.31.1.1:7000,194.11.41.45:9999" //server to accept mail from clients
 ```
