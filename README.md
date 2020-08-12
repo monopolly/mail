@@ -109,7 +109,7 @@ To receive mail you just need to send a request to the server with the necessary
 # Summary
 I would like to live in a world where e-mail exists but is not a pain for developers. I am sure we can implement this concept in the near future as an alternative to classic e-mail servers. Users will not even notice.
 
-You can support my idea with likes or on change.org;)
+You could support the idea with a stars here or on change.org(just kidding)
 
 ### p.s.
 I realize that a lot of people have enough of what they already have. But it's not a substitute for email. It's an improvement.
