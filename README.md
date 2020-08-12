@@ -18,7 +18,7 @@ You have to properly sign it with DKIM etc. You have to properly configure all s
 # The Solution
 This is written for those who already know how mail, smtp, postfix, sendmail etc. works. For those who have set up servers and sent messages.
 
-### JSON everywhere
+### 1. JSON everywhere
 We need a modern and cool format. You need a format that's fun to play with. So there's no misunderstandings. Totally for people. 
 
 - Markdown support (it could be the best safe email format)
@@ -63,11 +63,10 @@ You have json envelope with 2 fields only
 }
 ```
 
-### No MX records anymore
+### 2. No MX records anymore
 The main reason is to give a more flexible server structure. To simplify the development of electronic mail.
 
 1. For each domain you have to write a TXT fields in DNS. Servers to accept mail together with ports. No required 25, 2525, 487 etc ports. Use any ports you want.
-
 ```
 _inbox IN TXT "214.31.1.1:7000,194.11.41.45:9999" //server to accept mail from clients
 ```
@@ -80,5 +79,39 @@ _sign IN TXT "k=rsa; p=MIGfMA0GCSq...KblfgE68m0X90riYKwe1kDhWt7wIDAQAB" //signat
 _whitelist IN TXT "214.31.1.1:7000,194.11.41.45:9999, mx, a" //spf like
 ```
 
-### Email clients with full control
+### 3. HTTPS instead any other
+Now any programmer can write his just HTTP server. Since the new format is JSON, all communication between servers can pass through simple POST requests. This is simple and clear. 
+
+Each mail server that accepts mail has only one official endpoint:
+#### POST /
+
+So if your mail server IP is 119.10.11.12 your server have to accept all emails on
+https://119.10.11.12/
+
+or if your server is newmail.nice.com your server have to accept all emails on
+https://newmail.nice.com/
+
+```
+POST / HTTP/1.1
+Host: newmail.nice.com
+Content-Type: application/json
+Content-Length: 256
+
+{"email":"...", "signature":{...}}
+```
+
+That's it! There's no need to complicate things. Any server that wants to send an email must send a POST request to that address with the email.
+
+### 4. Simple Email clients
 To receive mail you just need to send a request to the server with the necessary data and get everything you need from it. A more flexible system than POP, IMAP, etc. Because it is possible to develop one universal format of communication between servers. Will be soon. Suggestion welcome.
+
+
+# Summary
+I would like to live in a world where e-mail exists but is not a pain for developers. I am sure we can implement this concept in the near future as an alternative to classic e-mail servers. Users will not even notice.
+
+You can support my idea with likes or on change.org;)
+
+### p.s.
+I realize that a lot of people have enough of what they already have. But it's not a substitute for email. It's an improvement.
+
+The old mail will work as before. But the preference will be for the new format as the main one. If the new format is not yet made on the server, the classic method will be used. This is the main idea.
