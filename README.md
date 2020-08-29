@@ -35,11 +35,21 @@ You have json envelope with 2 fields only
 
 ```json
 {
-    "email":{
-    "id":"newsletter.june.2020.first",
-    "from":"hello@smtpe.org SMTPE Foundation",
-    "to":["james.miller@nice.com James Miller", "martha@yahoo.com Martha"],
-    "cc":["martha@yahoo.com Martha"],
+  "message":{
+    "id": "newsletter.june.2020.first.6334342",
+    "from":{
+        "name": "Lynda Newman", 
+        "email": "lynda@mailfoundation.org"
+    },
+    "to": {
+        "name": "Dennis Roman", 
+        "email": "denins@jason.com"
+    },
+    "cc":[
+        {"name": "Dennis Roman", "email": "denins@jason.com"},
+        {"email": "mike@senthy.com"},
+        {"email": "a@senthy.com"},
+     ],
     "bcc":["martin@apple.com"],
     "subj": "UTF8 subject by default",
     "created": 1597221012,
@@ -52,7 +62,7 @@ You have json envelope with 2 fields only
     ],
     "type":"newsletter",
     "unsibscribe":"link.com/unsubscribe"
-    },
+  },
     "signature":{
         "selector":"dkim",
         "type":"rsa-sha256",
