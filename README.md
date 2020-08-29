@@ -1,4 +1,4 @@
-# Disrupt the Mail!
+# 📩 Disrupt the Mail!
 This is a first draft for mail system disrupt. Support it.
 
 # The problems:
