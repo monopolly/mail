@@ -43,11 +43,9 @@ You have json envelope with 2 fields only
     "bcc":["martin@apple.com"],
     "subj": "UTF8 subject by default",
     "created": 1597221012,
-    "body":{
-        "text":"some text body",
-        "markdown": "## Some markdown body",
-        "html": "<b>Some HTML Body</b>"
-    },
+    "text":"some text body",
+    "markdown": "## Some markdown body",
+    "html": "<b>Some HTML Body</b>",
     "files":[
         {"name":"image.jpg", "type":"image/jpg", "body":"wf1b27OWudu...Ogp+mmUf5mo"},
         {"name":"doc.pdf", "type":"document/pdf", "link":"https://apple.com/nice.pdf"}
@@ -63,37 +61,34 @@ You have json envelope with 2 fields only
 }
 ```
 
-### 2. No MX records anymore
+### 2. No MX records
 The main reason is to give a more flexible server structure. To simplify the development of electronic mail.
 
-1. For each domain you have to write a TXT/SRV? records in DNS. Servers to accept mail together with ports. No required 25, 2525, 487 etc ports. Use any ports you want.
+1. For each domain you have to write a SRV records in DNS. Servers to accept mail together with ports. No required 25, 2525, 487 etc ports. Use any ports you want.
 ```
-_inbox IN TXT "214.31.1.1:7000,194.11.41.45:9999" //server to accept mail from clients
+mail		IN	SRV	10 10 9999 mail.nice.com //server to accept mail from clients
+mail		IN	SRV	10 10 9999 182.11.13.41 //server to accept mail from clients
 ```
 2. signature for every mail (a public key for domain — such as DKIM)
 ```
-_sign IN TXT "k=rsa; p=MIGfMA0GCSq...KblfgE68m0X90riYKwe1kDhWt7wIDAQAB" //signature for every mail
-```
-3. List of valid IP, Hosts etc for email sending (spf)
-```
-_whitelist IN TXT "214.31.1.1:7000,194.11.41.45:9999, mx, a" //spf like
+mailkey. IN TXT "k=rsa; p=MIGfMA0GCSq...KblfgE68m0X90riYKwe1kDhWt7wIDAQAB" //signature for every mail
 ```
 
 ### 3. HTTPS instead any other
-Now any programmer can write his just HTTP server. Since the new format is JSON, all communication between servers can pass through simple POST requests. This is simple and clear. 
+Any developer could write a HTTP server. Since the new format is JSON, all communication between servers can pass through simple POST requests. This is simple and clear. 
 
 Each mail server that accepts mail has only one official endpoint:
 #### POST /
 
 So if your mail server IP is 119.10.11.12 your server have to accept all emails on
-https://119.10.11.12/
+POST https://119.10.11.12/
 
 or if your server is newmail.nice.com your server have to accept all emails on
-https://newmail.nice.com/
+POST https://inbox.nice.com/
 
 ```
 POST / HTTP/1.1
-Host: newmail.nice.com
+Host: inbox.nice.com
 Content-Type: application/json
 Content-Length: 256
 
@@ -104,7 +99,6 @@ That's it! There's no need to complicate things. Any server that wants to send a
 
 ### 4. Simple Email clients
 To receive mail you just need to send a request to the server with the necessary data and get everything you need from it. A more flexible system than POP, IMAP, etc. Because it is possible to develop one universal format of communication between servers. Will be soon. Suggestion welcome.
-
 
 # Summary
 I would like to live in a world where e-mail exists but is not a pain for developers. I am sure we can implement this concept in the near future as an alternative to classic e-mail servers. Users will not even notice.
